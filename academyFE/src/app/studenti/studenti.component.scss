@@ -1,0 +1,67 @@
+.material-class{
+  --mdc-filled-text-field-focus-active-indicator-color: rgb(25, 135, 84);
+  --mdc-filled-text-field-focus-label-text-color:rgb(25, 135, 84);
+}
+
+:host {
+  display: block;
+  background-color: rgb(159, 177, 159);
+}
+
+.bttoneIcon {
+  border: 2px solid rgb(25, 135, 84);
+}
+
+.icona-piccola {
+  width: 60px;
+  height: 60px;
+}
+
+.container-fluid {
+  min-height: 100vh;
+  position: relative;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.profile-image {
+  width: 150px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+span {
+  margin: 0 auto;
+}
+
+.mat-form-field input {
+  height: 20px;
+  transition: height ease-in-out 400ms;
+}
+
+.mat-mdc-header-row {
+  background-color: rgb(25, 135, 84);
+  color: white;
+}
+
+.bg-primary {
+  background-color: rgb(25, 135, 84) !important;
+}
+
+.modal-header {
+  background-color: rgb(25, 135, 84) !important;
+  color: white;
+}
+
+.btn-close {
+  color: red !important;
+}
+.custom-form-field {
+  width: 50%;
+
+  .mdc-notched-outline__leading {
+    border-top-left-radius: 8px !important;
+    border-bottom-left-radius: 8px !important;
+  }}
+ 

@@ -1,0 +1,27 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:rgb(159, 177, 159) ;
+    border-radius: 10px;
+   
+  
+  }
+  
+   
+   
+ .btnEdit{
+  background-color: rgb(255, 255, 255);
+  margin-bottom: 50px;
+ }
+ .inputFormEdit{
+  width: 45%;
+  margin: 2%;
+
+ }
+ .profile-image {
+  width: 150px;  
+  height: 120px;  
+  border-radius: 50%;
+  object-fit: cover;
+}

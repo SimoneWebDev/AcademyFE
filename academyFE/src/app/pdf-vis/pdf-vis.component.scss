@@ -1,0 +1,9 @@
+.loader{
+    width: 200px;
+    height: 200px;
+    --mdc-circular-progress-size: 100px;
+    --mdc-circular-progress-active-indicator-width: 100px;
+    position: absolute;
+    left: 50%;
+    top: 40%;
+}

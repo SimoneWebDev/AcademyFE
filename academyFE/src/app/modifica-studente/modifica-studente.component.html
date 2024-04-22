@@ -1,0 +1,85 @@
+<div class="container-fluid d-flex align-items-center justify-content-center">
+  <img class="w-25" src="/assets/output-onlinepngtools.png" />
+</div>
+<div class="text-end" style="width:  67%;">
+<button type="button" class="btn btn-success" title="Home" [routerLink]="['/academy/studenti']">
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-house-fill" viewBox="0 0 16 16">
+    <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293z"/>
+    <path d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293z"/>
+  </svg>
+</button></div>
+<div class="container-fluid">
+  <div class="row g-4">
+    <div class="col-md-6 mx-auto">
+      <div class="card shadow-lg p-4 mb-5 bg-body rounded">
+        <div class="card-body">
+          <div class="d-flex justify-content-center mb-3">
+            <img class="profile-image rounded-circle mb-4" 
+                 [src]="studente.immagineProfilo ? tipoBasePng + studente.immagineProfilo : 'assets/images/default_avatar.png' "
+                 alt="Immagine Profilo">
+          </div>
+          <h3 class="card-title text-center">Modifica Studente</h3>
+          <form class="row g-3 align-items-center" [formGroup]="studenteModificareForm">
+            <div class="col-md-6 mb-3">
+              <label for="nome" class="form-label">Nome</label>
+              <input type="text" class="form-control" id="nome" formControlName="nome">
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="cognome" class="form-label">Cognome</label>
+              <input type="text" class="form-control" id="cognome" formControlName="cognome">
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="numeroTelefonico" class="form-label">Telefono</label>
+              <input type="text" class="form-control" id="numeroTelefonico" formControlName="numeroTelefonico">
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" formControlName="email">
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="titoloDiStudio" class="form-label">Titolo Di Studio</label>
+              <input type="text" class="form-control" id="titoloDiStudio" formControlName="titoloDiStudio">
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="formFile" class="form-label">Immagine Profilo</label>
+              <input class="form-control" type="file" id="formFile" (change)="caricaImg($event)">
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="formFileCv" class="form-label">Cv</label>
+              <input class="form-control" type="file" id="formFileCv" (change)="caricaCv($event)">
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="dataDiNascita" class="form-label">Data Di Nascita</label>
+              <input type="date" class="form-control" id="dataDiNascita" formControlName="dataDiNascita">
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="dataInizioCorso" class="form-label">Data Inizio Corso</label>
+              <input type="date" class="form-control" id="dataInizioCorso" formControlName="dataInizioCorso">
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="dataFineCorso" class="form-label">Data Fine Corso</label>
+              <input type="date" class="form-control" id="dataFineCorso" formControlName="dataFineCorso">
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="progetto" class="form-label">Progetto</label>
+              <input type="text" class="form-control" id="progetto" formControlName="progetto">
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="note" class="form-label">Note</label>
+              <input type="text" class="form-control" id="note" formControlName="note">
+            </div>
+          </form>
+          <div class="d-grid gap-2">
+            <button [disabled]="!studenteModificareForm.valid" (click)="modificaStudente()" class="btn btn-success">
+              Modifica
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="height: 20px;"></div>
+
+

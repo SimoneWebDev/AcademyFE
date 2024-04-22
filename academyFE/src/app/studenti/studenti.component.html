@@ -1,0 +1,339 @@
+<div class="container">
+  <div class="row justify-content-center w-100 p-3">
+    <div class="col text-center">
+      <img src="/assets/output-onlinepngtools-Photoroom.png" style="width: 350px; height: auto;" />
+    </div>
+
+  </div>
+</div>
+
+
+<div class="container-fluid ">
+  <div class="w-75 mx-auto row">
+
+    <div class="text-center material-class">
+      <mat-form-field class="w-50">
+        <mat-label>Cerca Studente</mat-label>
+        <input class="w-25" matInput (keyup)="applyFilter($event)" placeholder="Cerca" #input>
+      </mat-form-field>
+
+
+      <div class="d-flex justify-content-end m-3">
+        <button type="button" class="btn btn-success m-1" title="Home" [routerLink]="['/academy']">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-house-fill"
+            viewBox="0 0 16 16">
+            <path
+              d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293z" />
+            <path d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293z" />
+          </svg>
+        </button>
+        <button type="button" class="btn btn-success m-1" title="Aggiungi studente" (click)="openAddStudente(content)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="30" fill="currentColor"
+            class="bi bi-person-plus-fill" viewBox="0 0 16 16">
+            <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
+            <path fill-rule="evenodd"
+              d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <table id="table" mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <div class="w-25 ">
+        <ng-container matColumnDef="immagineProfilo">
+          <th mat-header-cell *matHeaderCellDef> Profilo </th>
+          <td mat-cell *matCellDef="let studente">
+            <img [src]="studente.immagineProfilo ? (tipoBasePng + studente.immagineProfilo) : '/assets/img.icons8.png'"
+              alt="Immagine Profilo" class="profile-image"
+              style="border-radius: 100%; width: 60px; height: 60px; margin: 5px;">
+          </td>
+        </ng-container>
+      </div>
+
+
+
+
+      <ng-container matColumnDef="nome">
+        <th mat-header-cell *matHeaderCellDef> Nome </th>
+        <td mat-cell *matCellDef="let studente"> {{studente.nome}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="cognome">
+        <th mat-header-cell *matHeaderCellDef> Cognome </th>
+        <td mat-cell *matCellDef="let studente"> {{studente.cognome}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="numeroTelefonico">
+        <th mat-header-cell *matHeaderCellDef> Numero Telefonico </th>
+        <td mat-cell *matCellDef="let studente"> {{studente.numeroTelefonico}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="dataInizioCorso">
+        <th mat-header-cell *matHeaderCellDef> Data Inizio Corso </th>
+        <td mat-cell *matCellDef="let studente"> {{studente.dataInizioCorso | date:'dd/MM/yyyy' }} </td>
+      </ng-container>
+
+
+
+      <ng-container matColumnDef="Cv">
+        <th mat-header-cell *matHeaderCellDef> Cv </th>
+        <td mat-cell *matCellDef="let studente">
+
+          <button type="button" class="bottoneIcon m-1 btn btn-success " title="Visualizza Cv" id="cv"
+            [disabled]="!studente.cv" (click)="saveStudente(studente)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="30" fill="currentColor"
+              class="bi bi-filetype-pdf" viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                d="M14 4.5V14a2 2 0 0 1-2 2h-1v-1h1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5zM1.6 11.85H0v3.999h.791v-1.342h.803q.43 0 .732-.173.305-.175.463-.474a1.4 1.4 0 0 0 .161-.677q0-.375-.158-.677a1.2 1.2 0 0 0-.46-.477q-.3-.18-.732-.179m.545 1.333a.8.8 0 0 1-.085.38.57.57 0 0 1-.238.241.8.8 0 0 1-.375.082H.788V12.48h.66q.327 0 .512.181.185.183.185.522m1.217-1.333v3.999h1.46q.602 0 .998-.237a1.45 1.45 0 0 0 .595-.689q.196-.45.196-1.084 0-.63-.196-1.075a1.43 1.43 0 0 0-.589-.68q-.396-.234-1.005-.234zm.791.645h.563q.371 0 .609.152a.9.9 0 0 1 .354.454q.118.302.118.753a2.3 2.3 0 0 1-.068.592 1.1 1.1 0 0 1-.196.422.8.8 0 0 1-.334.252 1.3 1.3 0 0 1-.483.082h-.563zm3.743 1.763v1.591h-.79V11.85h2.548v.653H7.896v1.117h1.606v.638z" />
+            </svg>
+          </button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Icon">
+        <th mat-header-cell *matHeaderCellDef> Tools </th>
+        <td mat-cell *matCellDef="let studente">
+          <button class="bottoneIcon eyes m-1 btn btn-success" title="Dettagli studente"
+            (click)="openDettagli(dettagli,studente)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="30" fill="currentColor" class="bi bi-eye"
+              viewBox="0 0 16 16">
+              <path
+                d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z" />
+              <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0" />
+            </svg></button>
+
+          <button class="bottoneIcon delete m-1 btn btn-success" title="Elimina studente"
+            (click)="deleteStudent(studente.id)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="30" fill="currentColor" class="bi bi-trash"
+              viewBox="0 0 16 16">
+              <path
+                d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
+              <path
+                d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
+            </svg></button>
+
+          <button class="bottoneIcon edit m-1 btn btn-success" title="Modifica studente"
+            (click)="openModifica(studente)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="30" fill="currentColor" class="bi bi-pen"
+              viewBox="0 0 16 16">
+              <path
+                d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708z" />
+            </svg>
+          </button>
+        </td>
+      </ng-container>
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">Nessun studente trovato "{{input.value}}"</td>
+      </tr>
+    </table>
+
+  </div>
+
+</div>
+
+
+
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h1 class="modal-title fs-5" id="modal-basic-title">Nuovo Studente</h1>
+
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"
+      (click)="resettaModal()"></button>
+  </div>
+  <div class="modal-body">
+
+    <form [formGroup]="form" (ngSubmit)="submitForm()">
+
+      <div class="container w-100">
+        <div class="row justify-content-center">
+          <img class="profile-image" [src]="imgProfiloModel" *ngIf="imgProfiloModel" alt="Immagine Profilo">
+        </div>
+      </div>
+
+
+      <div class="mb-3">
+        <label for="formFile" class="form-label">Immagine di Profilo</label>
+        <input class="form-control" type="file" id="formFile" (change)="caricaImg($event)">
+      </div>
+
+      <div class="row">
+        <div class="col-6 pr-1">
+          <div class="form-group">
+            <label for="nome">Nome</label>
+            <input type="text" class="form-control" id="nome" formControlName="nome" required>
+          </div>
+        </div>
+        <div class="col-6 pl-1">
+          <div class="form-group">
+            <label for="cognome">Cognome</label>
+            <input type="text" class="form-control" id="cognome" formControlName="cognome" required>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="dataDiNascita">Data Di Nascita</label>
+        <input type="date" class="form-control" id="dataDiNascita" formControlName="dataDiNascita">
+      </div>
+
+      <div class="row">
+        <div class="col-6 pr-1">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" formControlName="email">
+          </div>
+        </div>
+        <div class="col-6 pl-1">
+          <div class="form-group">
+            <label for="titoloDiStudio">Titolo Di Studio</label>
+            <input type="text" class="form-control" id="titoloDiStudio" formControlName="titoloDiStudio">
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="numeroTelefonico">Numero Telefonico</label>
+        <input type="text" class="form-control" id="numeroTelefonico" formControlName="numeroTelefonico">
+      </div>
+
+      <div class="row">
+        <div class="col-6 pr-1">
+          <div class="form-group">
+            <label for="dataInizioCorso">Data Inizio Corso</label>
+            <input type="date" class="form-control" id="dataInizioCorso" formControlName="dataInizioCorso">
+          </div>
+        </div>
+        <div class="col-6 pl-1">
+          <div class="form-group">
+            <label for="dataFineCorso">Data Fine Corso</label>
+            <input type="date" class="form-control" id="dataFineCorso" formControlName="dataFineCorso">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="progetto">Progetto</label>
+        <input type="text" class="form-control" id="progetto" formControlName="progetto">
+      </div>
+      <div class="form-group">
+        <label for="note">Note</label>
+        <input type="text" class="form-control" id="note" formControlName="note">
+      </div>
+
+      <div class="mb-3">
+        <label for="formFile" class="form-label">Inserisci Cv</label>
+        <input class="form-control" type="file" id="formFile" (change)="caricaCv($event)">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="resettaModal()">Resetta Form</button>
+        <button type="button" class="btn btn-secondary" (click)="modal.dismiss('Cancel click')"
+          (click)="resettaModal()">Chiudi</button>
+        <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Salva</button>
+
+
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+<ng-template #dettagli let-modal>
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content modal-dialog-scrollable">
+      <div class="modal-header bg-primary text-white">
+        <h1 class="modal-title fs-5" id="modal-basic-title">Dettagli Studente</h1>
+        <button type="button" class="btn-close btn-close-white" aria-label="Close"
+          (click)="modal.dismiss('Cross click')"></button>
+      </div>
+      <div class="modal-body  row p-3">
+        <div class="mb-3 col-6">
+          <div class="card">
+            <div class="card-header text-white bg-primary">
+              Informazioni Base
+            </div>
+            <div class="card-body">
+              <p class="card-text mb-0"><strong>Nome:</strong> <span *ngIf="studenteDettagli.nome; else noData">
+                  {{ studenteDettagli.nome }}</span><ng-template #noData><span class="text-danger"> Dato non
+                    inserito</span></ng-template>
+              </p>
+              <p class="card-text mb-0"><strong>Cognome:</strong> <span *ngIf="studenteDettagli.cognome; else noData">
+                  {{ studenteDettagli.cognome }}</span><ng-template #noData><span class="text-danger"> Dato non
+                    inserito</span></ng-template>
+              </p>
+              <p class="card-text mb-0"><strong>Telefono:</strong> <span
+                  *ngIf="studenteDettagli.numeroTelefonico; else noData">
+                  {{ studenteDettagli.numeroTelefonico }}</span><ng-template #noData><span class="text-danger"> Dato
+                    non inserito</span></ng-template>
+              </p>
+              <p class="card-text mb-0"><strong>Email:</strong> <span *ngIf="studenteDettagli.email; else noData"> {{
+                  studenteDettagli.email }}</span><ng-template #noData><span class="text-danger"> Dato non inserito
+                  </span></ng-template>
+              </p>
+              <p class="card-text mb-0"><strong>Data di Nascita:</strong> <span
+                  *ngIf="studenteDettagli.dataDiNascita; else noData"> {{ studenteDettagli.dataDiNascita
+                  }}</span><ng-template #noData><span class="text-danger"> Dato non inserito</span></ng-template>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="mb-3 col-6">
+          <div class="card">
+            <div class="card-header text-white bg-primary">
+              Informazioni Corso
+            </div>
+            <div class="card-body">
+              <p class="card-text mb-0"><strong>Titolo di Studio:</strong> <span
+                  *ngIf="studenteDettagli.titoloDiStudio; else noData"> {{ studenteDettagli.titoloDiStudio
+                  }}</span><ng-template #noData><span class="text-danger"> Dato non inserito</span></ng-template>
+              </p>
+              <p class="card-text mb-0"><strong>Data inizio Corso:</strong> <span
+                  *ngIf="studenteDettagli.dataInizioCorso; else noData"> {{ studenteDettagli.dataInizioCorso
+                  }}</span><ng-template #noData><span class="text-danger"> Dato non inserito</span></ng-template>
+              </p>
+              <p class="card-text mb-0"><strong>Data fine Corso:</strong> <span
+                  *ngIf="studenteDettagli.dataFineCorso; else noData"> {{ studenteDettagli.dataFineCorso
+                  }}</span><ng-template #noData><span class="text-danger"> Dato non inserito</span></ng-template>
+              </p>
+              <p class="card-text mb-0"><strong>Progetto:</strong> <span *ngIf="studenteDettagli.progetto; else noData">
+                  {{ studenteDettagli.progetto }}</span><ng-template #noData><span class="text-danger"> Dato non
+                    inserito</span></ng-template>
+              </p>
+              <p class="card-text mb-0"><strong>Note:</strong> <span *ngIf="studenteDettagli.note; else noData"> {{
+                  studenteDettagli.note }}</span><ng-template #noData><span class="text-danger"> Dato non inserito
+                  </span></ng-template>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="card mb-3" *ngIf="studenteDettagli.cv">
+            <div class="card-header text-white bg-primary">
+              Cv
+            </div>
+            <div class="card-body">
+              <div class="container">
+                <div class="row justify-content-center">
+                  <strong>Cv</strong>
+                  <iframe id="inlineFrameExample" title="Inline Frame Example" width="100%" height="300"
+                    [src]="safeUrl">
+                  </iframe>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="modal.dismiss('Cancel click')">Chiudi</button>
+
+      </div>
+    </div>
+  </div>
+</ng-template>
